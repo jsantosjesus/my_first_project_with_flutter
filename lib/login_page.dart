@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_project_with_flutter/local_auth_service.dart';
-import 'package:provider/provider.dart';
+
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -12,19 +12,6 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String email = '';
   String password = '';
-
-  checkLocalAuth() async {
-    final auth = context.read<LocalAuthService>();
-    final isLocalAuthAvailable = await auth.isBiometricAvailable();
-
-    if (isLocalAuthAvailable) {
-      final authenticated = await auth.authenticate();
-
-      if (authenticated) {
-        Navigator.of(context).pushReplacementNamed('/home');
-      }
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
